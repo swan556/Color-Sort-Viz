@@ -17,3 +17,52 @@ code {
   margin: 0;
   box-sizing: border-box;
 }
+
+.container {
+  height: 100dvh;
+  width: 100dvw;
+  background-color: rgb(82, 171, 191);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.algo-selection-board {
+  height: 50%;
+  width: 70%;
+  background-color: rgb(165, 212, 230);
+  margin-bottom: 20rem;
+  padding: 40px;
+  border: 3px solid rgb(111, 182, 213);
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.algo-btn-cover {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.algo-btn {
+  height: 90%;
+  width: 90%;
+  border: 3px solid rgb(80, 151, 185);
+  border-radius: 100px;
+  font-size: x-large;
+  color: rgb(84, 147, 164);
+  background-color: rgb(166, 222, 241);
+}
+
+.selected {
+  border: 5px solid rgb(66, 122, 146);
+  background-color: rgb(94, 163, 188);
+  color: white;
+  height: 95%;
+  width: 95%;
+}
