@@ -2,9 +2,10 @@ import { useState } from "react";
 import AlgoSelectionBoard from "./componants/SelectAlgorithms/AlgoSelectionBoard";
 import ColorBoard from "./componants/CreateArray/CustomArraySelector/ColorBoard";
 import RandomArrayGenerator from "./componants/CreateArray/RandomArrayGenerator";
-import Button from "./componants/Button";
 import "./index.css";
 import Visualizer from "./componants/Visualizer/Visualizer";
+import bubble_sort from "./sortingAlgorithms/bubble_sort";
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const sortingAlgorithms = [
   {
     name: "Bubble Sort",
@@ -59,9 +60,33 @@ export default function App() {
   const [numColors, setNumColors] = useState(null);
   const [selectedAlgos, setSelectedAlgos] = useState([]);
   const [colorArray, setColorArray] = useState([]);
+  const [playAction, setPlayAction] = useState(false);
 
   function handlePageSelected() {
     setAlgoSelected((al) => !al);
+  }
+
+  async function animateSort() {
+    const animationSteps = bubble_sort(colorArray);
+    const delay = 10; // ms
+
+    for (let i = 0; i < animationSteps.length; i++) {
+      const { type, indices } = animationSteps[i];
+      const [idxA, idxB] = indices;
+
+      if (type === "compare") {
+        await sleep(delay);
+      } else {
+        setColorArray((arr) => {
+          const newArr = [...arr];
+          let temp = newArr[idxA];
+          newArr[idxA] = newArr[idxB];
+          newArr[idxB] = temp;
+          return newArr;
+        });
+        await sleep(delay);
+      }
+    }
   }
 
   return (
@@ -117,7 +142,19 @@ export default function App() {
         </>
       ) : (
         <>
-          <p>in construction</p>
+          <Visualizer
+            colorArray={colorArray}
+            displayHeight={500}
+            displayWidth={700}
+            playAction={playAction}
+          />
+          <button
+            onClick={() => {
+              animateSort();
+            }}
+          >
+            Play
+          </button>
         </>
       )}
     </div>

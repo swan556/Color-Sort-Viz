@@ -1,9 +1,8 @@
-import { useEffect } from "react";
-import bubble_sort from "../../sortingAlgorithms/bubble_sort";
 export default function Visualizer({
   colorArray,
   displayHeight,
   displayWidth,
+  playAction,
 }) {
   // hsl goes from 0 to 360
   // assuming scale to be: max hsl val in colorArray will be 95% of height var
@@ -11,8 +10,6 @@ export default function Visualizer({
   if (colorArray.length === 0) {
     return <h2>add colors to see visual</h2>;
   }
-
-  useEffect(function () {}, []);
 
   return (
     <div
@@ -22,8 +19,8 @@ export default function Visualizer({
         display: "flex",
         flexDirection: "row",
         alignItems: "flex-end",
-        gap: "2px",
-        backgroundColor: "rgb(219, 246, 246)",
+        gap: "0px",
+        backgroundColor: "none",
       }}
     >
       {colorArray.map((clr) => (
@@ -41,7 +38,7 @@ function LengthBar({ hue, height, width }) {
   return (
     <div
       style={{
-        height: `${height}px`,
+        height: `100%`,
         width: `${width}px`,
         padding: "2px",
         backgroundColor: `hsl(${hue}, 100%, 50%)`,

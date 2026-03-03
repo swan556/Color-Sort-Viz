@@ -7,7 +7,7 @@ export default function RandomArrayGenerator({
   function handleNumColors(num) {
     setNumColors(num);
     const arrNew = Array.from({ length: num }, () => ({
-      h: Math.floor(Math.random() * 361), // Random hue between 0 and 360
+      h: Math.floor(50 + Math.random() * 170), // Random hue between 0 and 360
       s: 100,
       l: 50,
     }));
