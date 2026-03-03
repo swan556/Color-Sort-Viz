@@ -4,6 +4,7 @@ import ColorBoard from "./componants/CreateArray/CustomArraySelector/ColorBoard"
 import RandomArrayGenerator from "./componants/CreateArray/RandomArrayGenerator";
 import Button from "./componants/Button";
 import "./index.css";
+import Visualizer from "./componants/Visualizer/Visualizer";
 const sortingAlgorithms = [
   {
     name: "Bubble Sort",
@@ -54,7 +55,10 @@ const sortingAlgorithms = [
 
 export default function App() {
   const [algoSelected, setAlgoSelected] = useState(false);
+  const [randomGeneratorActive, setRandomGeneratorActive] = useState(false);
+  const [numColors, setNumColors] = useState(null);
   const [selectedAlgos, setSelectedAlgos] = useState([]);
+  const [colorArray, setColorArray] = useState([]);
 
   function handlePageSelected() {
     setAlgoSelected((al) => !al);
@@ -70,10 +74,46 @@ export default function App() {
             setSelectedAlgos={setSelectedAlgos}
           />
           <div className="array-selector">
-            <ColorBoard />
-            <RandomArrayGenerator />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+              }}
+            >
+              {!randomGeneratorActive ? (
+                <ColorBoard
+                  colorArray={colorArray}
+                  setColorArray={setColorArray}
+                />
+              ) : (
+                <RandomArrayGenerator
+                  colorArray={colorArray}
+                  setColorArray={setColorArray}
+                  numColors={numColors}
+                  setNumColors={setNumColors}
+                />
+              )}
+              <button
+                className="toggle-method-btn"
+                onClick={() => {
+                  setRandomGeneratorActive((s) => !s);
+                  setColorArray([]);
+                  setNumColors(0);
+                }}
+              >
+                Toggle method
+              </button>
+            </div>
+            <Visualizer
+              colorArray={colorArray}
+              displayHeight={200}
+              displayWidth={250}
+            />
           </div>
-          <Button onClick={handlePageSelected} />
+          <button onClick={handlePageSelected} className="next-btn">
+            Next
+          </button>
         </>
       ) : (
         <>

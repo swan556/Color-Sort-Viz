@@ -1,11 +1,7 @@
-const colors = Array.from({ length: 100 }, () => ({
-  h: Math.floor(Math.random() * 361), // Random hue between 0 and 360
-  s: 100,
-  l: 50,
-}));
-
+import { useEffect } from "react";
+import bubble_sort from "../../sortingAlgorithms/bubble_sort";
 export default function Visualizer({
-  colorArray = colors,
+  colorArray,
   displayHeight,
   displayWidth,
 }) {
@@ -15,6 +11,9 @@ export default function Visualizer({
   if (colorArray.length === 0) {
     return <h2>add colors to see visual</h2>;
   }
+
+  useEffect(function () {}, []);
+
   return (
     <div
       style={{
@@ -24,7 +23,7 @@ export default function Visualizer({
         flexDirection: "row",
         alignItems: "flex-end",
         gap: "2px",
-        backgroundColor: "grey",
+        backgroundColor: "rgb(219, 246, 246)",
       }}
     >
       {colorArray.map((clr) => (
