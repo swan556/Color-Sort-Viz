@@ -1,71 +1,83 @@
-# Getting Started with Create React App
+# 🎨 Color Sort Viz
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An interactive, browser-based visualization tool that brings sorting algorithms to life using the HSL color spectrum. 
 
-## Available Scripts
+Built with **React** and **JavaScript**, this project maps numerical data to color hues, allowing users to watch the "chaos" of a random array transform into a perfect rainbow gradient.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
+* [Node.js](https://nodejs.org/) (v14 or higher)
+* npm (comes with Node)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/swan556/Color-Sort-Viz
+   ```
 
-### `npm test`
+2. **Install dependencies**
+   ```bash
+   cd Color-Sort-Viz
+   npm install
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Run the application**
+   ```bash
+   npm start
+   ```
+   The app will launch at `http://localhost:3000`.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ✨ Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* **Dynamic HSL Mapping:** Every bar's height and color are tied to its **Hue** value ($0^\circ$ to $360^\circ$). Saturation ($100\%$) and Lightness ($50\%$) remain constant for maximum visual clarity.
+* **Dual Input Modes:**
+    * **Random Generation:** Create a controlled set of random colors instantly.
+    * **Manual Selection:** Click on the custom-built 360-degree Hue spectrum to "hand-pick" your specific array.
+* **Algorithm Selection:** Compare how different logics handle the same data, starting with a smooth, step-by-step Bubble Sort implementation.
+* **Real-time Visualization:** Watch the sorting process in real-time with a controlled asynchronous delay.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🛠️ Technical Challenges & Solutions
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 1. Synchronous Logic vs. Asynchronous UI
+Sorting algorithms are typically synchronous and execute in milliseconds. To make the process visible, I implemented an **Asynchronous Animation Loop**. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+By calculating a "Plan of Action" (an array of swap/compare steps) and then executing them using a custom `sleep` utility based on Promises, I bridged the gap between raw algorithmic speed and React's render cycles.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2. State Immutability & Snapshots
+To avoid the "stale state" bug common in React loops, I utilized **Functional State Updates** (`setColorArray(prev => ...)`) and ensured all sorting logic operates on deep copies of data, preventing accidental mutation of the UI state before the animation begins.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 📂 Project Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* `RandomArrayGenerator.js`: Handles data creation and the manual color-picking logic.
+* `Visualizer.js`: The "Canvas" where color bars are scaled and rendered based on the current state.
+* `bubble_sort.js`: The pure logic engine that generates the step-by-step animation instructions.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📈 Roadmap
+- [ ] Add **Merge Sort** and **Quick Sort** (Visualizing recursion).
+- [ ] Implement **Selection Sort** and **Insertion Sort**.
+- [ ] **Comparison Highlighting:** Change bar colors (e.g., to Red) when they are being compared.
+- [ ] **Adjustable Speed:** Add a slider to control the animation delay in real-time.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 👤 Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**[Your Name]**
+* **Education:** Undergraduate at **IIT (BHU)**, Mechanical Engineering
+* **Interests:** Competitive Programming, Web Development
+* **Codeforces:** [Your Profile Link Here]
+* **GitHub:** [@swan556](https://github.com/swan556)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# Color-Sort-Viz" 
+---
+*Created for the love of algorithms and clean UI.*
